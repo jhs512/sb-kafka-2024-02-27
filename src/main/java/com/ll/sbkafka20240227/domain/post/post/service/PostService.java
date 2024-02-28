@@ -1,6 +1,7 @@
 package com.ll.sbkafka20240227.domain.post.post.service;
 
 import com.ll.sbkafka20240227.domain.member.member.entity.Member;
+import com.ll.sbkafka20240227.domain.member.member.service.MemberService;
 import com.ll.sbkafka20240227.domain.post.post.entity.Author;
 import com.ll.sbkafka20240227.domain.post.post.entity.Post;
 import com.ll.sbkafka20240227.domain.post.post.repository.PostRepository;
@@ -16,11 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class PostService {
     private final PostRepository postRepository;
+    private final MemberService memberService;
     @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
     public RsData<Post> write(Author author, String title) {
+        memberService.increasePostsCount(author.getId());
+
         return RsData.of(
                 postRepository.save(
                         Post.builder()
