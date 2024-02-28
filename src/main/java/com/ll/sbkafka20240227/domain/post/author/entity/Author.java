@@ -1,4 +1,4 @@
-package com.ll.sbkafka20240227.domain.post.post.entity;
+package com.ll.sbkafka20240227.domain.post.author.entity;
 
 import com.ll.sbkafka20240227.global.jpa.entity.BaseTime;
 import jakarta.persistence.Column;

@@ -1,7 +1,7 @@
 package com.ll.sbkafka20240227.domain.post.post.service;
 
 import com.ll.sbkafka20240227.domain.member.member.entity.Member;
-import com.ll.sbkafka20240227.domain.post.post.entity.Author;
+import com.ll.sbkafka20240227.domain.post.author.entity.Author;
 import com.ll.sbkafka20240227.domain.post.post.entity.Post;
 import com.ll.sbkafka20240227.domain.post.post.repository.PostRepository;
 import com.ll.sbkafka20240227.global.event.PostCreatedEvent;

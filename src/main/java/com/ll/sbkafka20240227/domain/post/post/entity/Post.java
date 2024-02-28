@@ -1,5 +1,6 @@
 package com.ll.sbkafka20240227.domain.post.post.entity;
 
+import com.ll.sbkafka20240227.domain.post.author.entity.Author;
 import com.ll.sbkafka20240227.global.jpa.entity.BaseTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
