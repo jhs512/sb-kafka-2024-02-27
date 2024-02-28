@@ -9,6 +9,8 @@ import com.ll.sbkafka20240227.global.rsData.RsData;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class PostService {
     private final PostRepository postRepository;
-    private final NotiService notiService;
+    @Autowired
+    @Lazy
+    private NotiService notiService;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -38,11 +42,15 @@ public class PostService {
     }
 
     private void firePostCreatedEvent(Post post) {
-        System.out.println("이벤트 발생");
+        notiService.postCreated(post);
     }
 
     public Author of(Member member) {
         return entityManager.getReference(Author.class, member.getId());
+    }
+
+    public Member of(Author author) {
+        return entityManager.getReference(Member.class, author.getId());
     }
 }
 
